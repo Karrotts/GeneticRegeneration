@@ -10,5 +10,5 @@ using System.Drawing;
 
 Image sourceImage = BitmapHelper.OpenImage(@"C:\dev\GeneticRegeneration\src\test.jpg");
 FastBitmap source = new FastBitmap((Bitmap)sourceImage);
-FastBitmap generated = Generator.StartGenerator(source, 2000, 1000, 100);
+FastBitmap generated = Generator.StartGenerator(source, 500, 500, 100, true);
 BitmapHelper.SaveImage(generated.ExportImage());

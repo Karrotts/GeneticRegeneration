@@ -38,6 +38,24 @@ namespace GeneticRegeneration.Helpers
         }
 
         /// <summary>
+        /// Saves a bitmap image to the current file directory
+        /// </summary>
+        /// <param name="bitmap"></param>
+        /// <returns>True on success</returns>
+        public static bool SaveImage(Image image, string path)
+        {
+            try
+            {
+                image.Save(path);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
         /// Creates a new bitmap with the given dimentions.
         /// </summary>
         /// <param name="width"></param>

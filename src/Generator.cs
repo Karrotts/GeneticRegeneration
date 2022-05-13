@@ -12,7 +12,7 @@ namespace GeneticRegeneration
 {
     public static class Generator
     {
-        public static FastBitmap StartGenerator(FastBitmap source, int generations, int children, int mutations)
+        public static FastBitmap StartGenerator(FastBitmap source, int generations, int children, int mutations, bool exportFrames = false, bool createReport = false)
         {
             // create a new empty FastBitmap with the same dimentions as the source
             FastBitmap generated = new FastBitmap(source.Width, source.Height);
@@ -20,15 +20,18 @@ namespace GeneticRegeneration
             // keep track of the last generations score
             uint lastScore = ScoreImage(source, generated);
 
-            Stopwatch stopwatch = new Stopwatch();
+            Stopwatch generationTimer = new Stopwatch();
+            Stopwatch totalTimer = new Stopwatch();
             float generationScale = 1;
+            bool newGeneration = true;
 
             // loop through each generation
-            stopwatch.Start();
+            generationTimer.Start();
+            totalTimer.Start();
             for (int i = 0; i < generations; i++)
             {
-                DisplayHelper.SetDisplay(i, generations, stopwatch.Elapsed, (float)lastScore / (float)(source.Width * source.Height * 100 * .50));
-                stopwatch.Restart();
+                DisplayHelper.SetDisplay(i, generations, generationTimer.Elapsed, (float)lastScore / (float)(source.Width * source.Height * 100 * .50));
+                if (newGeneration) generationTimer.Restart();
 
                 // generate children for this generation and sort by their score
                 List<ShapeData> generationChildren = GenerateChildren(source, children, generationScale);
@@ -57,9 +60,20 @@ namespace GeneticRegeneration
                     }
 
                     i--;
+                    continue;
+                }
+                if (createReport) Report.Data.Add(new ReportData(i, lastScore, generationTimer.Elapsed, totalTimer.Elapsed));
+                if (exportFrames)
+                {
+                    if (i % 5 == 0)
+                    {
+                        BitmapHelper.SaveImage(generated.ExportImage(), $"./gif/{i}.png");
+                    }
                 }
             }
 
+            totalTimer.Stop();
+            if (createReport) Report.ExportData();
             return generated;
         }
 
