@@ -13,4 +13,5 @@ If we take a 200x200 image and generate 2000 generations with 1000 children in e
 ![Result Image](https://github.com/Karrotts/GeneticRegeneration/blob/main/imgs/output.png "Result Image of Homer Simpson")
 
 **Process GIF 500 generations, with 500 children:**
+
 ![Result Image](https://github.com/Karrotts/GeneticRegeneration/blob/main/imgs/process.gif "Result Image of Homer Simpson")
