@@ -17,3 +17,6 @@ GeneticRegeneration.exe IMAGE_PATH GENERATIONS CHILDREN MUTATIONS EXPORT_FRAMES 
 ```
 GeneticRegeneration.exe C:\dev\image\example.jpg 500 500 100 false true
 ```
+
+## Limitations
+Currently the application only supports 200x200 JPG images. Larger images may be used but may run into memory allocations issues.
