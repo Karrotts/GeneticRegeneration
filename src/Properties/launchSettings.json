@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "GeneticRegeneration": {
+      "commandName": "Project",
+      "commandLineArgs": "C:\\dev\\GeneticRegeneration\\src\\test.jpg 100 100 0 true true"
+    }
+  }
+}
